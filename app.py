@@ -1,11 +1,17 @@
 import streamlit as st
 import pandas as pd
 import pickle
+from pathlib import Path
+
 
 # Load model and scaler
-model = pickle.load(open("D:\Projects\Machine Learning\Telco Customer Churn Dataset using stremlit\Telco-Customer-Churn-Dataset-using-stremlit\model\churn_model.pkl", "rb"))
-scaler = pickle.load(open("D:\Projects\Machine Learning\Telco Customer Churn Dataset using stremlit\Telco-Customer-Churn-Dataset-using-stremlit\model\scaler.pkl", "rb"))
-feature_columns = pickle.load(open(r"D:\Projects\Machine Learning\Telco Customer Churn Dataset using stremlit\Telco-Customer-Churn-Dataset-using-stremlit\model\feature_columns.pkl","rb"))
+BASE_DIR = Path(__file__).resolve().parent
+
+model = pickle.load(open(BASE_DIR / "model" / "churn_model.pkl", "rb"))
+scaler = pickle.load(open(BASE_DIR / "model" / "scaler.pkl", "rb"))
+feature_columns = pickle.load(open(BASE_DIR / "model" / "feature_columns.pkl", "rb"))
+
+
 st.title("Telco Customer Churn Prediction")
 
 st.write("Enter customer details to predict churn.")
